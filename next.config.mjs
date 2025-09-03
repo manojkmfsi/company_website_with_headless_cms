@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
+const url = new URL(process.env.NEXT_PUBLIC_STRAPI_API_URL);
 const nextConfig = {
   reactStrictMode: true,
   images: {
             remotePatterns: [
           {
-            protocol: 'http',
-            hostname: 'localhost',
-            port: '1337',
+            protocol: url.protocol.replace(':', ''),
+            hostname: url.hostname,
             pathname: '/uploads/**',
           },
           {
