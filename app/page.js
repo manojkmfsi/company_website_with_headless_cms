@@ -2,102 +2,189 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <section className="bg-white py-16 lg:py-24">
+              <div className="container mx-auto px-6 lg:px-8">
+        <div className="flex flex-col items-center text-center">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 tracking-tight">
+            Your Partner in Scalable Software Solutions
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mb-8">
+            We specialize in turning complex ideas into robust, high-performance
+            applications using cutting-edge technologies like React, Next.js,
+            Java, .NET, Python, and AI.
+          </p>
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <a
+              href="/services"
+              className="px-8 py-3 text-lg font-medium text-indigo-600 bg-white border border-indigo-600 rounded-full hover:bg-gray-100 transition-colors duration-300"
+            >
+              View Our Services
+            </a>
+          </div>
+        </div>
+      </div>
+      </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+      <section id="technologies" className="py-16 lg:py-24 bg-gray-100">
+        <div className="container mx-auto px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-12">
+            Our Technology Stack
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+            <div className="flex flex-col items-center">
+              <Image
+                src="https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg"
+                alt="PHP"
+                className="mb-2"
+                width={64}
+                height={64}
+                priority
+              />
+              <span className="text-sm font-medium text-gray-600">PHP</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Image
+                src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+                alt="React"
+                className="mb-2"
+                width={64}
+                height={64}
+                priority
+              />
+              <span className="text-sm font-medium text-gray-600">React</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Image
+                src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg"
+                alt="Next.js"
+                className="mb-2"
+                width={64}
+                height={64}
+                priority
+              />
+              <span className="text-sm font-medium text-gray-600">Next.js</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Image
+                src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg"
+                alt="TypeScript"
+                className="mb-2"
+                width={64}
+                height={64}
+                priority
+              />
+              <span className="text-sm font-medium text-gray-600">
+                TypeScript
+              </span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Image
+                src="https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/121px-Java_programming_language_logo.svg.png"
+                alt="Java"
+                className="mb-2"
+                width={64}
+                height={64}
+                max-height={64}
+                priority
+              />
+              <span className="text-sm font-medium text-gray-600">Java</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Image
+                src="https://upload.wikimedia.org/wikipedia/commons/e/ee/.NET_Core_Logo.svg"
+                alt=".NET"
+                className="mb-2"
+                width={64}
+                height={64}
+                priority
+              />
+              <span className="text-sm font-medium text-gray-600">.NET</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Image
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/150px-Python-logo-notext.svg.png"
+                alt="Python"
+                className="mb-2"
+                width={64}
+                height={64}
+                priority
+              />
+              <span className="text-sm font-medium text-gray-600">Python</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <Image
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Dall-e_3_%28jan_%2724%29_artificial_intelligence_icon.png/120px-Dall-e_3_%28jan_%2724%29_artificial_intelligence_icon.png"
+                alt="AI"
+                className="mb-2"
+                width={64}
+                height={64}
+                priority
+              />
+              <span className="text-sm font-medium text-gray-600">AI</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" className="bg-gray-50 py-16 lg:py-24">
+        <div className="container mx-auto px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-12">
+            What Our Clients Say
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-xl shadow-md">
+              <p className="text-gray-600 italic mb-4">
+                "The team delivered a scalable **Next.js platform** that
+                exceeded our expectations. Their technical expertise and
+                communication were second to none."
+              </p>
+              <p className="font-semibold text-gray-900">John Doe</p>
+              <p className="text-sm text-gray-500">CTO, Tech Solutions Inc.</p>
+            </div>
+            <div className="bg-white p-8 rounded-xl shadow-md">
+              <p className="text-gray-600 italic mb-4">
+                "Their expertise in **Java and .NET** allowed us to seamlessly
+                integrate our legacy systems with a new, robust backend. The
+                project was delivered on time and within budget."
+              </p>
+              <p className="font-semibold text-gray-900">Jane Smith</p>
+              <p className="text-sm text-gray-500">
+                Director of Engineering, Innovate Co.
+              </p>
+            </div>
+            <div className="bg-white p-8 rounded-xl shadow-md">
+              <p className="text-gray-600 italic mb-4">
+                "The **Python and AI** skills of the team helped us build a
+                powerful data analysis tool that has revolutionized our
+                operations. They are true innovators."
+              </p>
+              <p className="font-semibold text-gray-900">Michael Brown</p>
+              <p className="text-sm text-gray-500">
+                Founder, Data Insights LLC
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="bg-indigo-600 py-16 lg:py-24">
+        <div className="container mx-auto px-6 lg:px-8 text-center text-white">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            Ready to Build Your Next Big Idea?
+          </h2>
+          <p className="text-lg mb-8">
+            Let's discuss how our technology expertise can bring your vision to
+            life.
+          </p>
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#"
+            className="px-8 py-3 bg-white text-indigo-600 font-medium rounded-full hover:bg-gray-100 transition-colors duration-300 shadow-lg"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+            Request a Quote
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+    </>
   );
 }
