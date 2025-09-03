@@ -9,15 +9,19 @@ const Navigation = ({ siteSetting = {} }) => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  // Fix logo image URL logic
+  const logoUrl =
+    siteSetting.logo && siteSetting.logo[0]?.url
+      ? process.env.NEXT_PUBLIC_STRAPI_API_URL + siteSetting.logo[0].url
+      : "";
+
   return (
     <nav className="bg-white shadow-sm py-4">
       <div className="container mx-auto px-6 lg:px-8 flex items-center justify-between">
         <Link className="flex items-center space-x-3" href="/">
           <Image
-            src={
-              process.env.NEXT_PUBLIC_STRAPI_API_URL +
-                siteSetting.logo[0]?.url || ""
-            }
+            src={logoUrl}
             alt={siteSetting.company_name || "Company Logo"}
             width={50}
             height={50}

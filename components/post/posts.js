@@ -33,7 +33,8 @@ export default function Posts() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  });
+  
   function loadMorePosts() {
     setLoadMore(meta?.pagination.page !== meta?.pagination.pageCount);
     fetchData(
@@ -43,7 +44,7 @@ export default function Posts() {
   }
   useEffect(() => {
     fetchData(0, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
-  }, [fetchData]);
+  }, []);
 
   return (
     <>
