@@ -1,2 +1,96 @@
-# company_website_with_headless_cms
-Company Website using Next.js for the frontend and a Headless CMS (such as Strapi, Contentful, Sanity, or Ghost) for the backend.
+
+# ServeYou: An Interactive Company Website
+ServeYou  is a modern, responsive website built with Next.js, featuring a headless CMS integration. It's designed to showcase a company's information, services, team members and blog content.
+
+##  Features:
+**Next.js Framework:** Utilizes either the App Router for a robust and efficient development experience.
+
+**Headless CMS Integration:** Content is managed and served from a headless CMS (Strapi), providing flexibility and easy content updates.
+
+**Static Site Generation (SSG):** Pages like the home, about, team members and services are pre-rendered at build time for lightning-fast load speeds.
+
+**Dynamic Routing:** Includes dynamic pages for individual team members and blog posts.
+
+**Client-Side Search:** Users can easily search and filter blog posts on the blog page.
+
+## Technologies Used:
+**Next.js -** For building the user interface.
+
+**Tailwind CSS -** A utility-first CSS framework for rapid and responsive styling.
+
+## Bonus Tasks:
+**Team Member Page -** A dynamic route at /team/[id] displays detailed information about each team member.
+
+**Blog Search: -** The blog page includes a client-side search bar that filters the list of posts.
+
+## CMS Content Model(Strapi):
+**Site Settings:** Global site information like the company name, logo, and footer text.
+
+**Services:** Details for each service offered, including a title, description, price, and image.
+
+**Team Members:** Information about each team member, including their name, photo, designation, and a short bio.
+
+**Blog Posts:** Comprehensive content for the blog, with fields for the title, URL-friendly slug, author, date, body content, and a featured image.
+
+## Installation and Usage
+
+To get statred first setup Strapi headless CMS on your local machine, follow these steps:
+
+Create a new Strapi project(Replace my-strapi-project with your desired project name), Follow the prompts to choose your installation type (e.g., "Quickstart" for a default SQLite setup or "Custom" for manual database configuration) and preferred language (JavaScript or TypeScript):
+
+     npx create-strapi-app@latest my-strapi-project
+
+Configure the Project, if you chose "Custom," you will be prompted to select your database client (e.g., PostgreSQL, MySQL, MongoDB) and provide connection details like host, port, username, and password. Ensure your chosen database is running and accessible:
+
+Navigate to the strapi project directory:
+
+    cd my-strapi-project
+
+Start the development server:
+
+    npm run develop
+
+[Access the Admin Panel](http://localhost:1337/admin):
+
+**Create Content Models:**
+After logging in, go to the Content-Type Builder in the left sidebar. Here, you'll define the content models (collections) outlined in the CMS Content Model section above:
+
+1. Site Settings - Single type (company name, logo, footer text)
+2. Services - Collection Type (title, description, price, image)
+3. Team Members - Collection Type (name, photo, designation, bio)
+4. Blog Posts - Collection Type (title, slug, author, date, content, image)
+
+**Add Content:**
+After defining the models, go to the Content Manager to add content. Populate each collection with some sample data.
+
+
+**Now to setup next.js project on your local machine, follow these steps:**
+
+Clone the repository:
+
+     git clone https://github.com/manojkmfsi/company_website_with_headless_cms.git
+
+Navigate to the project directory:
+
+    cd company_website_with_headless_cms
+
+Create .env.local file and add following lines:
+
+    NEXT_PUBLIC_STRAPI_API_TOKEN=your-strapi-api-token
+    NEXT_PUBLIC_STRAPI_API_URL=http://localhost:1337
+    NEXT_PUBLIC_PAGE_LIMIT=3
+
+Install the dependencies:
+
+    npm install
+
+Start the development server:
+
+    npm run dev
+
+
+## Credits
+
+Strapi: The free and open-source headless CMS.
+
+
