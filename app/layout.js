@@ -1,4 +1,4 @@
-import "./globals.css";
+import "../styles/global.css";
 import Header from "../components/common/Header.js";
 import { fetchAPI } from "../lib/api";
 import Footer from "@/components/common/Footer";

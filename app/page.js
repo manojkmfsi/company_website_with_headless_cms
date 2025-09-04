@@ -171,24 +171,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <section id="contact" className="bg-indigo-600 py-16 lg:py-24">
-        <div className="container mx-auto px-6 lg:px-8 text-center text-white">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Ready to Build Your Next Big Idea?
-          </h2>
-          <p className="text-lg mb-8">
-            Let&#39;s discuss how our technology expertise can bring your vision to
-            life.
-          </p>
-          <a
-            href="#"
-            className="px-8 py-3 bg-white text-indigo-600 font-medium rounded-full hover:bg-gray-100 transition-colors duration-300 shadow-lg"
-          >
-            Request a Quote
-          </a>
-        </div>
-      </section>
     </>
   );
 }

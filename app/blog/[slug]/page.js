@@ -1,0 +1,32 @@
+import Post from "@/components/blog/post";
+import { fetchAPI } from "../../../lib/api";
+
+export default async function blog({ params }) {
+  const fetchData = async function () {
+    const { slug } = await params;
+    try {
+      const responseData = await fetchAPI(
+        `/api/articles?populate=*&filters[slug][$eq]=${slug}`
+      );
+      return responseData.data[0];
+    } catch (error) {
+      console.error(error);
+    } finally {
+    }
+  };
+
+  const post = await fetchData();
+
+  return (
+    <section className="bg-white py-16 lg:py-24">
+      <div className="container mx-auto px-6 lg:px-8">
+        <div className="container mx-auto px-6 lg:px-8 mb-12 text-center">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 tracking-tight">
+            Blog
+          </h1>
+        </div>
+        <Post post={post} />
+      </div>
+    </section>
+  );
+}
