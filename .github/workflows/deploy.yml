@@ -30,6 +30,8 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          NEXT_PUBLIC_STRAPI_API_URL: ${{ secrets.NEXT_PUBLIC_STRAPI_API_URL }}
 
       # - name: Run tests (optional)
       #   run: npm run test
