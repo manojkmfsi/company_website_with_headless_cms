@@ -21,8 +21,7 @@ export default function Posts({ posts, isLoading }) {
               <Image
                 src={
                   post.image?.formats?.thumbnail?.url
-                    ? process.env.NEXT_PUBLIC_STRAPI_API_URL +
-                      post.image.formats.thumbnail.url
+                    ? post.image.formats.thumbnail.url
                     : "https://placehold.co/600x400/1f2937/d1d5db.jpg?text=No+Image"
                 }
                 alt={post.title || ""}

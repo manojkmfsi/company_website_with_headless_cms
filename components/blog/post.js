@@ -8,7 +8,7 @@ export default function Post({ post }) {
       <Image
         src={
           post.image?.url
-            ? process.env.NEXT_PUBLIC_STRAPI_API_URL + post.image.url
+            ? post.image.url
             : "https://placehold.co/600x400/1f2937/d1d5db.jpg?text=No+Image"
         }
         alt={post.title || ""}

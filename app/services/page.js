@@ -34,8 +34,7 @@ export default async function ServicePage() {
                 <div className="w-full h-48 mb-6 flex items-center justify-center">
                   <Image
                     src={
-                      process.env.NEXT_PUBLIC_STRAPI_API_URL +
-                        service.image?.url || ""
+                      service.image?.url || ""
                     }
                     alt={service.title || ""}
                     style={{
