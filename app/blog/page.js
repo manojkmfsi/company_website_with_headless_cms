@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import Loader from "@/components/common/Loader";
 import Posts from "@/components/blog/posts";
 import Search from "@/components/common/search";
@@ -15,7 +15,7 @@ export default function BlogPage() {
   const [isLoading, setLoading] = useState(true);
   const [loadMore, setLoadMore] = useState(true);
 
-  const fetchData = async (start, limit) => {
+  const fetchData = async (start, limit, query = "") => {
     setLoading(true);
     try {
       const responseData = await fetchAPI(
@@ -37,22 +37,26 @@ export default function BlogPage() {
     }
   };
 
-  function loadMorePosts() {
+  async function loadMorePosts() {
     setLoadMore(meta?.pagination.page !== meta?.pagination.pageCount);
-    fetchData(
+    // if (meta?.pagination.page !== meta?.pagination.pageCount) {
+    await fetchData(
       meta?.pagination.page + 1,
       Number(process.env.NEXT_PUBLIC_PAGE_LIMIT),
+      query,
     );
+    // }
   }
 
-  function handleSearch(term) {
+  async function handleSearch(term) {
     setQuery(term);
     setCurrentPage(1);
+    await fetchData(0, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT), term);
   }
 
   useEffect(() => {
     fetchData(0, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
-  }, [query, currentPage]);
+  }, []);
   return (
     <section className="bg-white py-16 lg:py-24">
       <div className="container mx-auto px-6 lg:px-8">
@@ -62,7 +66,6 @@ export default function BlogPage() {
           </h1>
         </div>
         <Search onSearch={handleSearch} />
-
         <InfiniteScroll
           dataLength={posts.length}
           next={loadMorePosts}
@@ -76,7 +79,9 @@ export default function BlogPage() {
             )
           }
         >
-          <Posts posts={posts} isLoading={isLoading} />
+          <Suspense key={`${query}-${currentPage}`} fallback={<Loader />}>
+            <Posts posts={posts} isLoading={isLoading} />
+          </Suspense>
         </InfiniteScroll>
       </div>
     </section>
