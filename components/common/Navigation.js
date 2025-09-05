@@ -18,7 +18,7 @@ const Navigation = ({ siteSetting = {} }) => {
   // Fix logo image URL logic
   const logoUrl =
     siteSetting.logo && siteSetting.logo[0]?.url
-      ? process.env.NEXT_PUBLIC_STRAPI_API_URL + siteSetting.logo[0].url
+      ? siteSetting.logo[0].url
       : "";
 
   return (

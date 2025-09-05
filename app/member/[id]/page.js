@@ -39,8 +39,7 @@ export default async function MemberPage({ params }) {
               <Image
                 src={
                   member.photo?.formats?.thumbnail?.url
-                    ? process.env.NEXT_PUBLIC_STRAPI_API_URL +
-                      member.photo.formats.thumbnail.url
+                    ? member.photo.formats.thumbnail.url
                     : "https://placehold.co/600x400/1f2937/d1d5db.jpg?text=No+Image"
                 }
                 alt={`Photo of ${member.name || ""}`}

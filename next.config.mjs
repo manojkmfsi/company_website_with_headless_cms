@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const url = new URL(process.env.NEXT_PUBLIC_STRAPI_API_URL);
+const url = new URL(process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL);
 const nextConfig = {
   reactStrictMode: true,
   images: {
@@ -7,7 +7,6 @@ const nextConfig = {
       {
         protocol: url.protocol.replace(":", ""),
         hostname: url.hostname,
-        pathname: "/uploads/**",
       },
       {
         protocol: "https",

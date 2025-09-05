@@ -32,12 +32,11 @@ const TeamPage = async () => {
               className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105"
             >
               <Link href={`/member/${member.documentId}`}>
-                <div className="w-32 h-32 rounded-full overflow-hidden mb-4 border-4 border-purple-500">
+                <div className="w-32 h-32 rounded-full overflow-hidden mb-4 border-4 border-purple-500 mx-auto">
                   <Image
                     src={
                       member.photo?.formats?.thumbnail?.url
-                        ? process.env.NEXT_PUBLIC_STRAPI_API_URL +
-                          member.photo.formats.thumbnail.url
+                        ? member.photo.formats.thumbnail.url
                         : "https://placehold.co/600x400/1f2937/d1d5db.jpg?text=No+Image"
                     }
                     alt={`Photo of ${member.name || ""}`}
