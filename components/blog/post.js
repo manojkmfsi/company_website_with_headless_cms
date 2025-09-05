@@ -1,10 +1,10 @@
+import React from "react";
 import Image from "next/image";
+import PropTypes from "prop-types";
+
 export default function Post({ post }) {
   return (
-    <div
-      key={post.documentId}
-      className=""
-    >
+    <div key={post.documentId} className="">
       <Image
         src={
           post.image?.url
@@ -43,3 +43,7 @@ export default function Post({ post }) {
     </div>
   );
 }
+
+Post.propTypes = {
+  post: PropTypes.object.isRequired,
+};

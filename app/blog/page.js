@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import Loader from "@/components/common/Loader";
 import Posts from "@/components/blog/posts";
 import Search from "@/components/common/search";
@@ -18,7 +19,7 @@ export default function BlogPage() {
     setLoading(true);
     try {
       const responseData = await fetchAPI(
-        `/api/articles?populate=*&pagination[page]=${start}&pagination[pageSize]=${limit}&sort=publishedAt:desc&filters[title][$containsi]=${query}`
+        `/api/articles?populate=*&pagination[page]=${start}&pagination[pageSize]=${limit}&sort=publishedAt:desc&filters[title][$containsi]=${query}`,
       );
 
       if (start === 0) {
@@ -40,7 +41,7 @@ export default function BlogPage() {
     setLoadMore(meta?.pagination.page !== meta?.pagination.pageCount);
     fetchData(
       meta?.pagination.page + 1,
-      Number(process.env.NEXT_PUBLIC_PAGE_LIMIT)
+      Number(process.env.NEXT_PUBLIC_PAGE_LIMIT),
     );
   }
 

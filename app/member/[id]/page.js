@@ -1,13 +1,15 @@
+import React from "react";
 import { fetchAPI } from "../../../lib/api";
 import Image from "next/image";
 import Posts from "@/components/blog/posts";
+import PropTypes from "prop-types";
 
 export default async function MemberPage({ params }) {
   const { id } = await params;
   const fetchData = async () => {
     try {
       const responseData = await fetchAPI(
-        `/api/team-members/${id}?populate[0]=photo&populate[1]=articles.image&populate[2]=articles.author`
+        `/api/team-members/${id}?populate[0]=photo&populate[1]=articles.image&populate[2]=articles.author`,
       );
       console.log(responseData);
       return responseData.data;
@@ -66,3 +68,7 @@ export default async function MemberPage({ params }) {
     </section>
   );
 }
+
+MemberPage.propTypes = {
+  params: PropTypes.object.isRequired,
+};

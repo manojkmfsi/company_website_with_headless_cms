@@ -1,12 +1,17 @@
+import React from "react";
 import Navigation from "./Navigation.js";
+import PropTypes from "prop-types";
 
 const Header = ({ siteSetting }) => {
   return (
     <header className="bg-white">
-        <Navigation siteSetting={siteSetting} />
+      <Navigation siteSetting={siteSetting} />
     </header>
   );
 };
 
-export default Header;
+Header.propTypes = {
+  siteSetting: PropTypes.object,
+};
 
+export default Header;

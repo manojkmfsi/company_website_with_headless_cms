@@ -1,4 +1,5 @@
 import Image from "next/image";
+import React from "react";
 
 export default function Home() {
   return (
@@ -10,9 +11,9 @@ export default function Home() {
               Your Partner in Scalable Software Solutions
             </h1>
             <p className="text-lg md:text-xl text-gray-600 max-w-2xl mb-8">
-              We specialize in turning complex ideas into robust, high-performance
-              applications using cutting-edge technologies like React, Next.js,
-              Java, .NET, Python, and AI.
+              We specialize in turning complex ideas into robust,
+              high-performance applications using cutting-edge technologies like
+              React, Next.js, Java, .NET, Python, and AI.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <a
@@ -135,23 +136,27 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-xl shadow-md">
               <p className="text-gray-600 italic mb-4">
-                &quot;The team delivered a scalable <strong>Next.js platform</strong> that
-                exceeded our expectations. Their technical expertise and
-                communication were second to none.&quot;
+                &quot;The team delivered a scalable{" "}
+                <strong>Next.js platform</strong> that exceeded our
+                expectations. Their technical expertise and communication were
+                second to none.&quot;
               </p>
               <div className="flex items-center text-sm text-gray-500 mb-4">
-                <span className="mr-3">John Doe</span>{" • "}
+                <span className="mr-3">John Doe</span>
+                {" • "}
                 <span className="ml-3">CTO, Tech Solutions Inc.</span>
               </div>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-md">
               <p className="text-gray-600 italic mb-4">
-                &quot;Their expertise in <strong>Java and .NET</strong> allowed us to seamlessly
-                integrate our legacy systems with a new, robust backend. The
-                project was delivered on time and within budget.&quot;
+                &quot;Their expertise in <strong>Java and .NET</strong> allowed
+                us to seamlessly integrate our legacy systems with a new, robust
+                backend. The project was delivered on time and within
+                budget.&quot;
               </p>
               <div className="flex items-center text-sm text-gray-500 mb-4">
-                <span className="mr-3">Jane Smith</span>{" • "}
+                <span className="mr-3">Jane Smith</span>
+                {" • "}
                 <span className="ml-3">
                   Director of Engineering, Innovate Co.
                 </span>
@@ -159,12 +164,13 @@ export default function Home() {
             </div>
             <div className="bg-white p-8 rounded-xl shadow-md">
               <p className="text-gray-600 italic mb-4">
-                &quot;The <strong>Python and AI</strong> skills of the team helped us build a
-                powerful data analysis tool that has revolutionized our
-                operations. They are true innovators.&quot;
+                &quot;The <strong>Python and AI</strong> skills of the team
+                helped us build a powerful data analysis tool that has
+                revolutionized our operations. They are true innovators.&quot;
               </p>
               <div className="flex items-center text-sm text-gray-500 mb-4">
-                <span className="mr-3">Michael Brown</span>{" • "}
+                <span className="mr-3">Michael Brown</span>
+                {" • "}
                 <span className="ml-3">Founder, Data Insights LLC</span>
               </div>
             </div>

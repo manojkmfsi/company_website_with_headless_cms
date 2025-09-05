@@ -1,3 +1,4 @@
+import React from "react";
 import { fetchAPI } from "../../lib/api";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,7 +6,9 @@ import Link from "next/link";
 const TeamPage = async () => {
   const fetchData = async () => {
     try {
-      const responseData = await fetchAPI(`/api/team-members?populate[0]=photo`);
+      const responseData = await fetchAPI(
+        `/api/team-members?populate[0]=photo`,
+      );
       return responseData.data;
     } catch (error) {
       console.error(error);

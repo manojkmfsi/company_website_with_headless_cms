@@ -1,8 +1,9 @@
-
 # ServeYou: An Interactive Company Website
-ServeYou  is a modern, responsive website built with Next.js, featuring a headless CMS integration. It's designed to showcase a company's information, services, team members and blog content.
 
-##  Features:
+ServeYou is a modern, responsive website built with Next.js, featuring a headless CMS integration. It's designed to showcase a company's information, services, team members and blog content.
+
+## Features:
+
 **Next.js Framework:** Utilizes either the App Router for a robust and efficient development experience.
 
 **Headless CMS Integration:** Content is managed and served from a headless CMS (Strapi), providing flexibility and easy content updates.
@@ -14,16 +15,19 @@ ServeYou  is a modern, responsive website built with Next.js, featuring a headle
 **Client-Side Search:** Users can easily search and filter blog posts on the blog page.
 
 ## Technologies Used:
+
 **Next.js -** For building the user interface.
 
 **Tailwind CSS -** A utility-first CSS framework for rapid and responsive styling.
 
 ## Bonus Tasks:
+
 **Team Member Page -** A dynamic route at /team/[id] displays detailed information about each team member.
 
 **Blog Search: -** The blog page includes a client-side search bar that filters the list of posts.
 
 ## CMS Content Model(Strapi):
+
 **Site Settings:** Global site information like the company name, logo, and footer text.
 
 **Services:** Details for each service offered, including a title, description, price, and image.
@@ -63,7 +67,6 @@ After logging in, go to the Content-Type Builder in the left sidebar. Here, you'
 **Add Content:**
 After defining the models, go to the Content Manager to add content. Populate each collection with some sample data.
 
-
 **Now to setup next.js project on your local machine, follow these steps:**
 
 Clone the repository:
@@ -88,9 +91,6 @@ Start the development server:
 
     npm run dev
 
-
 ## Credits
 
 Strapi: The free and open-source headless CMS.
-
-

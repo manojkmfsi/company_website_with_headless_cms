@@ -1,8 +1,9 @@
 "use client";
+import React from "react";
 import Image from "next/image";
+import PropTypes from "prop-types";
 
 export default function Posts({ posts, isLoading }) {
-
   return (
     <>
       {!isLoading && !posts.length ? (
@@ -67,3 +68,8 @@ export default function Posts({ posts, isLoading }) {
     </>
   );
 }
+
+Posts.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isLoading: PropTypes.bool,
+};

@@ -1,3 +1,4 @@
+import React from "react";
 import { fetchAPI } from "../../lib/api";
 import Image from "next/image";
 
@@ -8,12 +9,14 @@ export default async function ServicePage() {
     <section className="bg-white py-16 lg:py-24">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="container mx-auto px-6 lg:px-8 mb-12 text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 tracking-tight">
-                Our Comprehensive Services
-            </h1>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                We offer a wide range of custom software development services, from building modern web applications to implementing advanced AI solutions.
-            </p>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 tracking-tight">
+            Our Comprehensive Services
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+            We offer a wide range of custom software development services, from
+            building modern web applications to implementing advanced AI
+            solutions.
+          </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service) => {

@@ -1,3 +1,4 @@
+import React from "react";
 import Post from "@/components/blog/post";
 import { fetchAPI } from "../../../lib/api";
 
@@ -6,12 +7,11 @@ export default async function blog({ params }) {
     const { slug } = await params;
     try {
       const responseData = await fetchAPI(
-        `/api/articles?populate=*&filters[slug][$eq]=${slug}`
+        `/api/articles?populate=*&filters[slug][$eq]=${slug}`,
       );
       return responseData.data[0];
     } catch (error) {
       console.error(error);
-    } finally {
     }
   };
 
