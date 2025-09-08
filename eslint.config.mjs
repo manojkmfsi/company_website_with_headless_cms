@@ -18,7 +18,7 @@ const eslintConfig = [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
+    "prettier"
   ),
   {
     ignores: [
@@ -28,6 +28,12 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
     ],
+  },
+  {
+    plugins: ["jest"],
+    env: {
+      jest: true,
+    },
   },
 ];
 
