@@ -38,5 +38,5 @@ jobs:
           NEXT_PUBLIC_STRAPI_MEDIA_URL: ${{ secrets.NEXT_PUBLIC_STRAPI_MEDIA_URL }}
 
 
-      # - name: Run tests (optional)
-      #   run: npm run test
+      - name: Run tests (optional)
+        run: npm run test

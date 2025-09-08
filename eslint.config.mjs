@@ -2,6 +2,8 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
+import jest from "eslint-plugin-jest";
+import globals from "globals"; // <-- import globals
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -18,7 +20,7 @@ const eslintConfig = [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
+    "prettier"
   ),
   {
     ignores: [
@@ -28,6 +30,16 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
     ],
+  },
+  {
+    plugins: {
+      jest,
+    },
+    languageOptions: {
+      globals: {
+        ...globals.jest, // <-- use globals.jest
+      },
+    },
   },
 ];
 

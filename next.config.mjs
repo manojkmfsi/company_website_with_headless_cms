@@ -1,13 +1,26 @@
 /** @type {import('next').NextConfig} */
-const url = new URL(process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL);
+// Safely parse the URL only if it exists and is valid
+let url;
+try {
+  if (process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL) {
+    url = new URL(process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL);
+  }
+} catch (e) {
+  console.error("Invalid NEXT_PUBLIC_STRAPI_MEDIA_URL:", e);
+  url = null;
+}
 const nextConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: [
-      {
-        protocol: url.protocol.replace(":", ""),
-        hostname: url.hostname,
-      },
+      ...(url
+        ? [
+            {
+              protocol: url.protocol.replace(":", ""),
+              hostname: url.hostname,
+            },
+          ]
+        : []),
       {
         protocol: "https",
         hostname: "upload.wikimedia.org",
