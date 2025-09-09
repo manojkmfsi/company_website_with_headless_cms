@@ -20,8 +20,8 @@ export default function Posts({ posts, isLoading }) {
             <a href={`/blog/${post.slug}`} title="Go to blog post">
               <Image
                 src={
-                  post.image?.formats?.thumbnail?.url
-                    ? post.image.formats.thumbnail.url
+                  post.image?.formats?.small?.url
+                    ? post.image.formats.small.url
                     : "https://placehold.co/600x400/1f2937/d1d5db.jpg?text=No+Image"
                 }
                 alt={post.title || ""}
