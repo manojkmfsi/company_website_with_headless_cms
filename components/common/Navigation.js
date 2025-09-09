@@ -17,9 +17,7 @@ const Navigation = ({ siteSetting = {} }) => {
 
   // Fix logo image URL logic
   const logoUrl =
-    siteSetting.logo && siteSetting.logo[0]?.url
-      ? siteSetting.logo[0].url
-      : "";
+    siteSetting.logo && siteSetting.logo[0]?.url ? siteSetting.logo[0].url : "";
 
   return (
     <nav className="bg-white shadow-sm py-4">

@@ -34,7 +34,9 @@ export default async function ServicePage() {
                 <div className="w-full h-48 mb-6 flex items-center justify-center">
                   <Image
                     src={
-                      service.image?.url || ""
+                      service.image?.url
+                        ? service.image?.url
+                        : "https://placehold.co/600x400/1f2937/d1d5db.jpg?text=No+Image"
                     }
                     alt={service.title || ""}
                     style={{

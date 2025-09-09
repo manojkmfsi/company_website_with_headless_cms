@@ -1,8 +1,8 @@
 import "@testing-library/jest-dom";
 import { render, act, screen } from "@testing-library/react";
-import BlogPage from "./page";
+import TeamPage from "./page";
 
-jest.mock("../../components/blog/post-list");
+jest.mock("../../components/member/members");
 
 // helper wrapper: allows rendering async server component
 const renderAsync = async (Comp) => {
@@ -10,18 +10,18 @@ const renderAsync = async (Comp) => {
   return render(ui);
 };
 
-describe("BlogsPage", () => {
-  it("renders Blogs Page", async () => {
+describe("MembersPage", () => {
+  it("renders Members Page", async () => {
     await act(async () => {
-      renderAsync(BlogPage);
+      renderAsync(TeamPage);
     });
   });
 
-  it("renders Blogs Page Heading", async () => {
+  it("renders Members Page Heading", async () => {
     await act(async () => {
-      renderAsync(BlogPage);
+      renderAsync(TeamPage);
     });
-    const heading = screen.getByRole("heading", { name: /Blogs/i });
+    const heading = screen.getByRole("heading", { name: /Meet Our Team/i });
     expect(heading).toBeInTheDocument();
   });
 });
