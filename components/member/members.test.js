@@ -30,7 +30,7 @@ describe("Members", () => {
           designation: "Lead Developer",
           bio: "Lorem ipsum dolor sit amet.",
           photo: {
-            formats: { thumbnail: { url: "https://example.com/john-doe.jpg" } },
+            formats: { small: { url: "https://example.com/john-doe.jpg" } },
           },
         },
         {

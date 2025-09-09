@@ -34,8 +34,8 @@ export default async function MemberPage({ id }) {
           <div className="w-32 h-32 rounded-full overflow-hidden mb-4 border-4 border-purple-500">
             <Image
               src={
-                member.photo?.formats?.thumbnail?.url
-                  ? member.photo.formats.thumbnail.url
+                member.photo?.formats?.small?.url
+                  ? member.photo.formats.small.url
                   : "https://placehold.co/600x400/1f2937/d1d5db.jpg?text=No+Image"
               }
               alt={`Photo of ${member.name || ""}`}

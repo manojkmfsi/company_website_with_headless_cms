@@ -7,7 +7,7 @@ const post = {
   documentId: 1,
   title: "Test Post 1",
   content: "This is the content of Test Post 1",
-  image: { formats: { thumbnail: { url: "" } } },
+  image: { formats: { small: { url: "" } } },
   author: { name: "Author 1" },
   publishedAt: "2023-10-01T00:00:00Z",
   slug: "test-post-1",
