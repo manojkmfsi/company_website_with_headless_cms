@@ -9,7 +9,7 @@ export default async function MemberPage({ id }) {
   const fetchData = async () => {
     try {
       const responseData = await fetchAPI(
-        `/api/team-members/${id}?populate[0]=photo&populate[1]=articles.image&populate[2]=articles.author`,
+        `/api/team-members/${id}?populate[0]=photo&populate[1]=articles.image&populate[2]=articles.author`,  { next: { revalidate: 60 }}
       );
       console.log(responseData);
       return responseData.data;

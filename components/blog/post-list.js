@@ -19,7 +19,7 @@ export default function BlogPage() {
     setLoading(true);
     try {
       const responseData = await fetchAPI(
-        `/api/articles?populate=*&pagination[page]=${start}&pagination[pageSize]=${limit}&sort=publishedAt:desc&filters[title][$containsi]=${query}`,
+        `/api/articles?populate=*&pagination[page]=${start}&pagination[pageSize]=${limit}&sort=publishedAt:desc&filters[title][$containsi]=${query}`,  { next: { revalidate: 60 }}
       );
 
       if (start === 0) {

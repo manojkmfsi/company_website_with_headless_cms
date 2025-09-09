@@ -8,7 +8,7 @@ export default async function blog({ params }) {
     const { slug } = await params;
     try {
       const responseData = await fetchAPI(
-        `/api/articles?populate=*&filters[slug][$eq]=${slug}`,
+        `/api/articles?populate=*&filters[slug][$eq]=${slug}`, { next: { revalidate: 60 }}
       );
       if (responseData.data.length === 0) {
         return null;
