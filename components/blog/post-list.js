@@ -1,82 +1,74 @@
 "use client";
-import React, { Suspense } from "react";
+import React from "react";
 import Loader from "@/components/common/Loader";
 import Posts from "@/components/blog/posts";
 import Search from "@/components/common/search";
-import { useState, useEffect } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { useState } from "react";
 import { fetchAPI } from "../../lib/api";
+import useSWRInfinite from "swr/infinite";
 
 export default function BlogPage() {
   const [query, setQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [meta, setMeta] = useState({ pagination: { page: currentPage } });
-  const [posts, setPosts] = useState([]);
-  const [isLoading, setLoading] = useState(true);
-  const [loadMore, setLoadMore] = useState(true);
 
-  const fetchData = async (start, limit, query = "") => {
-    setLoading(true);
-    try {
-      const responseData = await fetchAPI(
-        `/api/articles?populate=*&pagination[page]=${start}&pagination[pageSize]=${limit}&sort=publishedAt:desc&filters[title][$containsi]=${query}`,  { next: { revalidate: 60 }}
-      );
+  const getKey = (pageIndex, previousPageData) => {
+    // If we have reached the end, don't fetch more data
+    if (previousPageData && previousPageData.data.length === 0) return null;
 
-      if (start === 0) {
-        setPosts(responseData.data);
-      } else {
-        setPosts((prevData) => [...prevData, ...responseData.data]);
-      }
-
-      const metas = responseData.meta;
-      setMeta(metas);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
+    // Return a unique key for the page
+    return `/api/articles?populate=*&pagination[page]=${pageIndex + 1}&pagination[pageSize]=${process.env.NEXT_PUBLIC_PAGE_LIMIT}&sort=publishedAt:desc&filters[title][$containsi]=${query}`;
   };
 
-  async function loadMorePosts() {
-    setLoadMore(meta?.pagination.page !== meta?.pagination.pageCount);
-    // if (meta?.pagination.page !== meta?.pagination.pageCount) {
-    await fetchData(
-      meta?.pagination.page + 1,
-      Number(process.env.NEXT_PUBLIC_PAGE_LIMIT),
-      query,
-    );
-    // }
-  }
+  const { data, size, setSize, isValidating } = useSWRInfinite(
+    getKey,
+    fetchAPI,
+    {
+      revalidateOnFocus: false,
+    },
+  );
 
-  async function handleSearch(term) {
+  // Flatten the array of arrays returned by useSWRInfinite - array of pages into a single array of posts
+  const allPosts = data ? data.flatMap((page) => page.data) : [];
+  
+  //  if the last page of data contains fewer items than the PAGE_LIMIT
+  const isEnd =
+    data?.[data.length - 1]?.data?.length < process.env.NEXT_PUBLIC_PAGE_LIMIT;
+
+  const loadMorePosts = () => {
+    setSize(size + 1);
+  };
+
+  const handleSearch = (term) => {
     setQuery(term);
-    setCurrentPage(1);
-    await fetchData(0, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT), term);
-  }
+    // Reset the SWR state to restart the infinite scroll from page 1 with the new query
+    setSize(1);
+  };
 
-  useEffect(() => {
-    fetchData(0, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
-  }, []);
   return (
     <>
       <Search onSearch={handleSearch} />
-      <InfiniteScroll
-        dataLength={posts.length}
-        next={loadMorePosts}
-        hasMore={loadMore}
-        loader={isLoading ? <Loader /> : ""}
-        endMessage={
-          !isLoading && !loadMore ? (
-            <p className="text-center">No more data to load.</p>
-          ) : (
-            ""
-          )
-        }
-      >
-        <Suspense key={`${query}-${currentPage}`} fallback={<Loader />}>
-          <Posts posts={posts} isLoading={isLoading} />
-        </Suspense>
-      </InfiniteScroll>
+      {isValidating && allPosts.length === 0 ? (
+        <Loader />
+      ) : (
+        <>
+          <Posts posts={allPosts} />
+          {!isEnd && (
+            <div className="text-center mt-8">
+              <button
+                onClick={loadMorePosts}
+                disabled={isValidating}
+                className="px-6 py-3 bg-gray-900 text-white rounded-full font-semibold hover:bg-gray-700 transition-colors duration-300"
+              >
+                {isValidating ? "Loading..." : "Load More Posts"}
+              </button>
+            </div>
+          )}
+          {!isValidating && isEnd && allPosts.length > 0 && (
+            <p className="text-center mt-8 text-gray-500">
+              You have reached the end of the posts.
+            </p>
+          )}
+        </>
+      )}
     </>
   );
 }
