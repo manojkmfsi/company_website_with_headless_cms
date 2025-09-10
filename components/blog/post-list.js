@@ -28,7 +28,7 @@ export default function BlogPage() {
 
   // Flatten the array of arrays returned by useSWRInfinite - array of pages into a single array of posts
   const allPosts = data ? data.flatMap((page) => page.data) : [];
-  
+
   //  if the last page of data contains fewer items than the PAGE_LIMIT
   const isEnd =
     data?.[data.length - 1]?.data?.length < process.env.NEXT_PUBLIC_PAGE_LIMIT;
