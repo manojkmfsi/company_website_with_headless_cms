@@ -7,7 +7,8 @@ const Members = async () => {
   const fetchData = async () => {
     try {
       const responseData = await fetchAPI(
-        `/api/team-members?populate[0]=photo`,  { next: { revalidate: 60 }}
+        `/api/team-members?populate[0]=photo`,
+        { next: { revalidate: 60 } },
       );
       return responseData.data;
     } catch (error) {
@@ -16,7 +17,7 @@ const Members = async () => {
   };
 
   const teamMembers = await fetchData();
-  
+
   return (
     <div className="max-w-7xl mx-auto">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

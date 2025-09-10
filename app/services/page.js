@@ -4,7 +4,9 @@ import Image from "next/image";
 // export const dynamic = 'force-dynamic';
 
 export default async function ServicePage() {
-  const res = await fetchAPI("/api/services?populate=*&sort=price:asc", { next: { revalidate: 60 }});
+  const res = await fetchAPI("/api/services?populate=*&sort=price:asc", {
+    next: { revalidate: 60 },
+  });
   const services = res.data;
   return (
     <section className="bg-white py-16 lg:py-24">

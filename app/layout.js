@@ -6,7 +6,9 @@ import Footer from "@/components/common/Footer";
 import PropTypes from "prop-types";
 
 const RootLayout = async ({ children }) => {
-  const res = await fetchAPI("/api/site-setting?populate=*", { next: { revalidate: 60 }});
+  const res = await fetchAPI("/api/site-setting?populate=*", {
+    next: { revalidate: 60 },
+  });
   const siteSetting = res.data;
 
   return (
