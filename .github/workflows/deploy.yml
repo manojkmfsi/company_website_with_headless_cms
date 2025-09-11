@@ -36,6 +36,7 @@ jobs:
           NEXT_PUBLIC_STRAPI_API_TOKEN: ${{ secrets.NEXT_PUBLIC_STRAPI_API_TOKEN }}
           NEXT_PUBLIC_PAGE_LIMIT: ${{ secrets.NEXT_PUBLIC_PAGE_LIMIT }}
           NEXT_PUBLIC_STRAPI_MEDIA_URL: ${{ secrets.NEXT_PUBLIC_STRAPI_MEDIA_URL }}
+          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
 
       - name: Run tests (optional)
         run: npm run test
