@@ -1,4 +1,13 @@
 import React from "react";
+
+export const metadata = {
+  title: "About Page",
+  description: "About Our Company",
+  alternates: {
+    canonical: process.env.NEXT_PUBLIC_BASE_URL + "/about",
+  },
+};
+
 export default function aboutPage() {
   return (
     <section className="bg-white py-16 lg:py-24">

@@ -1,6 +1,24 @@
 import React from "react";
 import PostList from "@/components/blog/post-list";
 
+export async function generateMetadata() {
+  return {
+    title: "Blogs",
+    description: "Blogs Page",
+    keywords: [
+      "react",
+      "nextjs",
+      "tailwindcss",
+      "php",
+      "laravel",
+      "javascript",
+      "nodejs",
+    ],
+    alternates: {
+      canonical: process.env.NEXT_PUBLIC_BASE_URL + "/blog",
+    },
+  };
+}
 export default function BlogPage() {
   return (
     <section className="bg-white py-16 lg:py-24">

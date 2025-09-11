@@ -3,11 +3,48 @@ import { fetchAPI } from "../../lib/api";
 import Image from "next/image";
 // export const dynamic = 'force-dynamic';
 
+import { cache } from "react";
+
+export const fetchData = cache(async () => {
+  try {
+    const responseData = await fetchAPI(
+      "/api/services?populate=*&sort=price:asc",
+      {
+        next: { revalidate: 60 },
+      },
+    );
+    return responseData.data;
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+export async function generateMetadata() {
+  const services = await fetchData();
+  const serviceList = services?.map((service) => service.title);
+
+  return {
+    title: "Services",
+    description: "Our services include " + serviceList.join(", "),
+    keywords: [
+      ...serviceList,
+      "react",
+      "nextjs",
+      "tailwindcss",
+      "php",
+      "laravel",
+      "javascript",
+      "nodejs",
+    ],
+    alternates: {
+      canonical: process.env.NEXT_PUBLIC_BASE_URL + "/services",
+    },
+  };
+}
+
 export default async function ServicePage() {
-  const res = await fetchAPI("/api/services?populate=*&sort=price:asc", {
-    next: { revalidate: 60 },
-  });
-  const services = res.data;
+  const services = await fetchData();
+
   return (
     <section className="bg-white py-16 lg:py-24">
       <div className="container mx-auto px-6 lg:px-8">

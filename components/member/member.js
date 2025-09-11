@@ -1,28 +1,9 @@
 import React from "react";
-import { fetchAPI } from "../../lib/api";
 import Image from "next/image";
 import Posts from "@/components/blog/posts";
 import PropTypes from "prop-types";
-import { notFound } from "next/navigation";
 
-export default async function MemberPage({ id }) {
-  const fetchData = async () => {
-    try {
-      const responseData = await fetchAPI(
-        `/api/team-members/${id}?populate[0]=photo&populate[1]=articles.image&populate[2]=articles.author`,
-        { next: { revalidate: 60 } },
-      );
-      console.log(responseData);
-      return responseData.data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const member = await fetchData();
-  if (!member) {
-    notFound();
-  }
+export default async function MemberPage({ member }) {
   const articles = member.articles || [];
 
   return (
@@ -65,5 +46,5 @@ export default async function MemberPage({ id }) {
 }
 
 MemberPage.propTypes = {
-  id: PropTypes.object.isRequired,
+  member: PropTypes.object.isRequired,
 };

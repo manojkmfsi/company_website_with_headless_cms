@@ -1,0 +1,7 @@
+#Block all crawlers from accessing the /api routes
+User-agent: *
+Disallow: /api/
+
+#Allow all crawlers to access all other pages
+User-agent: *
+Allow: /
