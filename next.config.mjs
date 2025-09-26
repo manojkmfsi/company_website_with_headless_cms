@@ -6,7 +6,7 @@ try {
     url = new URL(process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL);
   }
 } catch (e) {
-  console.error("Invalid NEXT_PUBLIC_STRAPI_MEDIA_URL:", e);
+  console.error('Invalid NEXT_PUBLIC_STRAPI_MEDIA_URL:', e);
   url = null;
 }
 const nextConfig = {
@@ -16,19 +16,19 @@ const nextConfig = {
       ...(url
         ? [
             {
-              protocol: url.protocol.replace(":", ""),
+              protocol: url.protocol.replace(':', ''),
               hostname: url.hostname,
             },
           ]
         : []),
       {
-        protocol: "https",
-        hostname: "upload.wikimedia.org",
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
       },
       {
-        protocol: "https",
-        hostname: "placehold.co",
-        port: "",
+        protocol: 'https',
+        hostname: 'placehold.co',
+        port: '',
       },
     ],
   },

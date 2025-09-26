@@ -1,24 +1,24 @@
-import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
-import Post from "./post";
-import React from "react";
+import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import Post from './post';
+import React from 'react';
 
 const post = {
   documentId: 1,
-  title: "Test Post 1",
-  content: "This is the content of Test Post 1",
-  image: { formats: { small: { url: "" } }, url: "" },
-  author: { name: "Author 1" },
-  publishedAt: "2023-10-01T00:00:00Z",
-  slug: "test-post-1",
+  title: 'Test Post 1',
+  content: 'This is the content of Test Post 1',
+  image: { formats: { small: { url: '' } }, url: '' },
+  author: { name: 'Author 1' },
+  publishedAt: '2023-10-01T00:00:00Z',
+  slug: 'test-post-1',
 };
 
-describe("Post", () => {
-  it("renders post", () => {
+describe('Post', () => {
+  it('renders post', () => {
     render(<Post post={post} />);
   });
 
-  it("renders post details", () => {
+  it('renders post details', () => {
     render(<Post post={post} />);
 
     expect(screen.getByText(post.title)).toBeInTheDocument();
@@ -27,14 +27,14 @@ describe("Post", () => {
     expect(
       screen.getByText(
         new RegExp(
-          new Date(post.publishedAt).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
+          new Date(post.publishedAt).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
           }),
-          "i",
-        ),
-      ),
+          'i'
+        )
+      )
     ).toBeInTheDocument();
   });
 });

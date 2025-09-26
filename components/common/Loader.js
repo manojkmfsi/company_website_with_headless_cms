@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 const Loader = () => {
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className='flex flex-col items-center justify-center'>
       <p
-        data-testid="loader"
-        className="mt-8 text-lg font-medium text-gray-700 dark:text-gray-300"
+        data-testid='loader'
+        className='mt-8 text-lg font-medium text-gray-700 dark:text-gray-300'
       >
         Loading...
       </p>
