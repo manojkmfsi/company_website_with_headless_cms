@@ -2,6 +2,11 @@ import "@testing-library/jest-dom";
 import { render, act, screen } from "@testing-library/react";
 import BlogPage from "./page";
 
+// Mock the server action
+jest.mock("../actions/fetchPosts", () => ({
+  fetchPosts: jest.fn(),
+}));
+
 jest.mock("../../components/blog/post-list");
 
 // helper wrapper: allows rendering async server component
