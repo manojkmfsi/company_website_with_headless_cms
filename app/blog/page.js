@@ -1,5 +1,6 @@
 import React from "react";
 import PostList from "@/components/blog/post-list";
+import { fetchPosts } from "../actions/fetchPosts";
 
 export async function generateMetadata() {
   return {
@@ -19,7 +20,13 @@ export async function generateMetadata() {
     },
   };
 }
-export default function BlogPage() {
+
+export default async function BlogPage() {
+  const initialData = await fetchPosts({
+    page: 1,
+    pageSize: process.env.NEXT_PUBLIC_PAGE_LIMIT || 10,
+    query: "",
+  });
   return (
     <section className="bg-white py-16 lg:py-24">
       <div className="container mx-auto px-6 lg:px-8">
@@ -27,7 +34,7 @@ export default function BlogPage() {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 tracking-tight">
             Blogs
           </h1>
-          <PostList></PostList>
+          <PostList initialData={initialData}></PostList>
         </div>
       </div>
     </section>
