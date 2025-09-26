@@ -1,68 +1,75 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Loader from "@/components/common/Loader";
 import Posts from "@/components/blog/posts";
 import Search from "@/components/common/search";
-import { useState } from "react";
-import { fetchAPI } from "../../lib/api";
-import useSWRInfinite from "swr/infinite";
+import PropTypes from "prop-types";
+import { fetchPosts } from "@/app/actions/fetchPosts";
 
-export default function BlogPage() {
+export default function BlogPage({ initialData }) {
   const [query, setQuery] = useState("");
-
-  const getKey = (pageIndex, previousPageData) => {
-    // If we have reached the end, don't fetch more data
-    if (previousPageData && previousPageData.data.length === 0) return null;
-
-    // Return a unique key for the page
-    return `/api/articles?populate=*&pagination[page]=${pageIndex + 1}&pagination[pageSize]=${process.env.NEXT_PUBLIC_PAGE_LIMIT}&sort=publishedAt:desc&filters[title][$containsi]=${query}`;
-  };
-
-  const { data, size, setSize, isValidating } = useSWRInfinite(
-    getKey,
-    fetchAPI,
-    {
-      revalidateOnFocus: false,
-    },
+  const [posts, setPosts] = useState(initialData ? initialData.data : []);
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isEnd, setIsEnd] = useState(
+    initialData?.data?.length < (process.env.NEXT_PUBLIC_PAGE_LIMIT || 3),
   );
 
-  // Flatten the array of arrays returned by useSWRInfinite - array of pages into a single array of posts
-  const allPosts = data ? data.flatMap((page) => page.data) : [];
+  const loadMorePosts = async () => {
+    setIsLoading(true);
+    const nextPage = page + 1;
+    const data = await fetchPosts({
+      page: nextPage,
+      pageSize: process.env.NEXT_PUBLIC_PAGE_LIMIT || 3,
+      query: query,
+    });
 
-  //  if the last page of data contains fewer items than the PAGE_LIMIT
-  const isEnd =
-    data?.[data.length - 1]?.data?.length < process.env.NEXT_PUBLIC_PAGE_LIMIT;
-
-  const loadMorePosts = () => {
-    setSize(size + 1);
+    setPosts((prev) => [...prev, ...data.data]);
+    setPage(nextPage);
+    // If the returned page has fewer posts than the limit, it's the end
+    setIsEnd(data.data.length < (process.env.NEXT_PUBLIC_PAGE_LIMIT || 3));
+    setIsLoading(false);
   };
 
-  const handleSearch = (term) => {
+  const handleSearch = async (term) => {
     setQuery(term);
-    // Reset the SWR state to restart the infinite scroll from page 1 with the new query
-    setSize(1);
+    setIsLoading(true);
+    const data = await fetchPosts({
+      page: 1,
+      pageSize: process.env.NEXT_PUBLIC_PAGE_LIMIT || 3,
+      query: term,
+    });
+
+    setPosts(data?.data ?? []);
+    setPage(1);
+    setIsEnd(
+      !data?.data.length ||
+        data?.data.length < (process.env.NEXT_PUBLIC_PAGE_LIMIT || 3),
+    );
+    setIsLoading(false);
   };
 
   return (
     <>
       <Search onSearch={handleSearch} />
-      {isValidating && allPosts.length === 0 ? (
+      {isLoading && posts.length === 0 ? (
         <Loader />
       ) : (
         <>
-          <Posts posts={allPosts} />
+          <Posts posts={posts} />
           {!isEnd && (
             <div className="text-center mt-8">
               <button
+                // data-test-id="loader"
                 onClick={loadMorePosts}
-                disabled={isValidating}
+                disabled={isLoading}
                 className="px-6 py-3 bg-gray-900 text-white rounded-full font-semibold hover:bg-gray-700 transition-colors duration-300"
               >
-                {isValidating ? "Loading..." : "Load More Posts"}
+                {isLoading ? "Loading..." : "Load More Posts"}
               </button>
             </div>
           )}
-          {!isValidating && isEnd && allPosts.length > 0 && (
+          {!isLoading && isEnd && posts.length > 0 && (
             <p className="text-center mt-8 text-gray-500">
               You have reached the end of the posts.
             </p>
@@ -72,3 +79,7 @@ export default function BlogPage() {
     </>
   );
 }
+
+BlogPage.propTypes = {
+  initialData: PropTypes.object.isRequired,
+};
