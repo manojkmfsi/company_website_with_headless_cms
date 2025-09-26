@@ -1,10 +1,10 @@
-"use client";
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import { usePathname } from "next/navigation";
-import PropTypes from "prop-types";
+'use client';
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import PropTypes from 'prop-types';
 
 const Navigation = ({ siteSetting = {} }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,85 +17,85 @@ const Navigation = ({ siteSetting = {} }) => {
 
   // Fix logo image URL logic
   const logoUrl =
-    siteSetting.logo && siteSetting.logo[0]?.url ? siteSetting.logo[0].url : "";
+    siteSetting.logo && siteSetting.logo[0]?.url ? siteSetting.logo[0].url : '';
 
   return (
-    <nav className="bg-white shadow-sm py-4">
-      <div className="container mx-auto px-6 lg:px-8 flex items-center justify-between">
-        <Link className="flex items-center space-x-3" href="/">
+    <nav className='bg-white py-4 shadow-sm'>
+      <div className='container mx-auto flex items-center justify-between px-6 lg:px-8'>
+        <Link className='flex items-center space-x-3' href='/'>
           <Image
             src={logoUrl}
-            alt={siteSetting.company_name || "Company Logo"}
+            alt={siteSetting.company_name || 'Company Logo'}
             width={50}
             height={50}
           />
-          <span className="text-2xl font-bold text-gray-900">
-            {siteSetting.company_name || "Company Name"}
+          <span className='text-2xl font-bold text-gray-900'>
+            {siteSetting.company_name || 'Company Name'}
           </span>
         </Link>
-        <div className="hidden md:flex space-x-8">
+        <div className='hidden space-x-8 md:flex'>
           <Link
-            href="/"
+            href='/'
             className={
-              "text-gray-600 hover:text-indigo-600 transition-colors duration-200 font-medium " +
-              (isActive("/") ? "active" : "")
+              'font-medium text-gray-600 transition-colors duration-200 hover:text-indigo-600 ' +
+              (isActive('/') ? 'active' : '')
             }
           >
             Home
           </Link>
           <Link
-            href="/services"
+            href='/services'
             className={
-              "text-gray-600 hover:text-indigo-600 transition-colors duration-200 font-medium " +
-              (isActive("/services") ? "active" : "")
+              'font-medium text-gray-600 transition-colors duration-200 hover:text-indigo-600 ' +
+              (isActive('/services') ? 'active' : '')
             }
           >
             Services
           </Link>
           <Link
-            href="/member"
+            href='/member'
             className={
-              "text-gray-600 hover:text-indigo-600 transition-colors duration-200 font-medium " +
-              (isActive("/member") ? "active" : "")
+              'font-medium text-gray-600 transition-colors duration-200 hover:text-indigo-600 ' +
+              (isActive('/member') ? 'active' : '')
             }
           >
             Members
           </Link>
           <Link
-            href="/blog"
+            href='/blog'
             className={
-              "text-gray-600 hover:text-indigo-600 transition-colors duration-200 font-medium " +
-              (isActive("/blog") ? "active" : "")
+              'font-medium text-gray-600 transition-colors duration-200 hover:text-indigo-600 ' +
+              (isActive('/blog') ? 'active' : '')
             }
           >
             Blog
           </Link>
           <Link
-            href="/about"
+            href='/about'
             className={
-              "text-gray-600 hover:text-indigo-600 transition-colors duration-200 font-medium " +
-              (isActive("/about") ? "active" : "")
+              'font-medium text-gray-600 transition-colors duration-200 hover:text-indigo-600 ' +
+              (isActive('/about') ? 'active' : '')
             }
           >
             About
           </Link>
         </div>
         <button
-          className="md:hidden text-gray-600 hover:text-indigo-600 focus:outline-none"
+          className='text-gray-600 hover:text-indigo-600 focus:outline-none md:hidden'
           onClick={toggleMenu}
         >
           <svg
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+            className='h-6 w-6'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
           >
             <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth='2'
               d={
-                isMenuOpen ? "M4 6h16M4 12h16m-7 6h7" : "M4 6h16M4 12h16m-7 6h7"
+                isMenuOpen ? 'M4 6h16M4 12h16m-7 6h7' : 'M4 6h16M4 12h16m-7 6h7'
               }
             />
           </svg>
@@ -103,52 +103,52 @@ const Navigation = ({ siteSetting = {} }) => {
       </div>
       {/* Mobile Menu Dropdown - Conditionally rendered with a class based on state */}
       <div
-        className="fixed hidden inset-0 w-full h-full bg-black/60 z-[99] cursor-pointer select-none"
-        style={{ display: isMenuOpen ? "block" : "none" }}
+        className='fixed inset-0 z-[99] hidden h-full w-full cursor-pointer bg-black/60 select-none'
+        style={{ display: isMenuOpen ? 'block' : 'none' }}
         onClick={toggleMenu}
       >
-        <div className="px-2 pt-2 pb-3 space-y-2 mt-2">
+        <div className='mt-2 space-y-2 px-2 pt-2 pb-3'>
           <Link
-            href="/"
+            href='/'
             className={
-              "block px-3 py-2 rounded-md text-base font-medium text-center bg-gray-100 " +
-              (isActive("/") ? "active" : "")
+              'block rounded-md bg-gray-100 px-3 py-2 text-center text-base font-medium ' +
+              (isActive('/') ? 'active' : '')
             }
           >
             Home
           </Link>
           <Link
-            href="/services"
+            href='/services'
             className={
-              "block px-3 py-2 rounded-md text-base font-medium text-center bg-gray-100 " +
-              (isActive("/services") ? "active" : "")
+              'block rounded-md bg-gray-100 px-3 py-2 text-center text-base font-medium ' +
+              (isActive('/services') ? 'active' : '')
             }
           >
             Services
           </Link>
           <Link
-            href="/member"
+            href='/member'
             className={
-              "block px-3 py-2 rounded-md text-base font-medium text-center bg-gray-100 " +
-              (isActive("/member") ? "active" : "")
+              'block rounded-md bg-gray-100 px-3 py-2 text-center text-base font-medium ' +
+              (isActive('/member') ? 'active' : '')
             }
           >
             Members
           </Link>
           <Link
-            href="/blog"
+            href='/blog'
             className={
-              "block px-3 py-2 rounded-md text-base font-medium text-center bg-gray-100 " +
-              (isActive("/blog") ? "active" : "")
+              'block rounded-md bg-gray-100 px-3 py-2 text-center text-base font-medium ' +
+              (isActive('/blog') ? 'active' : '')
             }
           >
             Blog
           </Link>
           <Link
-            href="/about"
+            href='/about'
             className={
-              "block px-3 py-2 rounded-md text-base font-medium text-center bg-gray-100 " +
-              (isActive("/about") ? "active" : "")
+              'block rounded-md bg-gray-100 px-3 py-2 text-center text-base font-medium ' +
+              (isActive('/about') ? 'active' : '')
             }
           >
             About

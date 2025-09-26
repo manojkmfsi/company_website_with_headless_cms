@@ -1,10 +1,10 @@
-import React from "react";
-import Navigation from "./Navigation.js";
-import PropTypes from "prop-types";
+import React from 'react';
+import Navigation from './Navigation.js';
+import PropTypes from 'prop-types';
 
 const Header = ({ siteSetting }) => {
   return (
-    <header className="bg-white">
+    <header className='bg-white'>
       <Navigation siteSetting={siteSetting} />
     </header>
   );

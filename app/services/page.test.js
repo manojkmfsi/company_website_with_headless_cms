@@ -1,15 +1,15 @@
-import "@testing-library/jest-dom";
-import { render, act, screen } from "@testing-library/react";
-import ServicePage from "./page";
-import { fetchAPI } from "../../lib/api";
-import React from "react";
+import '@testing-library/jest-dom';
+import { render, act, screen } from '@testing-library/react';
+import ServicePage from './page';
+import { fetchAPI } from '../../lib/api';
+import React from 'react';
 
 // mock fetchAPI
-jest.mock("../../lib/api", () => ({
+jest.mock('../../lib/api', () => ({
   fetchAPI: jest.fn(),
 }));
 
-jest.mock("next/image", () => ({
+jest.mock('next/image', () => ({
   __esModule: true,
   default: (props) => {
     return <img {...props} />;
@@ -19,28 +19,28 @@ jest.mock("next/image", () => ({
 const services = [
   {
     id: 1,
-    title: "Web Development",
-    description: "Build modern web apps",
+    title: 'Web Development',
+    description: 'Build modern web apps',
     price: 5000,
-    image: { url: "/web.jpg" },
+    image: { url: '/web.jpg' },
   },
   {
     id: 2,
-    title: "AI Solutions",
-    description: "AI powered apps",
+    title: 'AI Solutions',
+    description: 'AI powered apps',
     price: 8000,
-    image: { url: "/ai.jpg" },
+    image: { url: '/ai.jpg' },
   },
 ];
 
 // helper wrapper: allows rendering async server component
 const renderAsync = async (Comp) => {
-  const ui = await Comp({ params: { id: "123" } });
+  const ui = await Comp({ params: { id: '123' } });
   return render(ui);
 };
 
-describe("MemberPage", () => {
-  it("renders Services", async () => {
+describe('MemberPage', () => {
+  it('renders Services', async () => {
     fetchAPI.mockResolvedValueOnce({
       data: services,
     });
@@ -49,7 +49,7 @@ describe("MemberPage", () => {
     });
   });
 
-  it("renders Service Page Heading", async () => {
+  it('renders Service Page Heading', async () => {
     fetchAPI.mockResolvedValueOnce({
       data: services,
     });
@@ -57,7 +57,7 @@ describe("MemberPage", () => {
     await act(async () => {
       renderAsync(ServicePage);
     });
-    const heading = screen.getByRole("heading", {
+    const heading = screen.getByRole('heading', {
       name: /Our Comprehensive Services/i,
     });
     expect(heading).toBeInTheDocument();
@@ -65,10 +65,10 @@ describe("MemberPage", () => {
     services.forEach((service) => {
       expect(screen.getByText(service.title)).toBeInTheDocument();
       expect(screen.getByText(service.description)).toBeInTheDocument();
-      expect(screen.getByText("$ " + service.price)).toBeInTheDocument();
+      expect(screen.getByText('$ ' + service.price)).toBeInTheDocument();
       expect(screen.getByAltText(service.title)).toHaveAttribute(
-        "src",
-        service.image.url,
+        'src',
+        service.image.url
       );
     });
   });

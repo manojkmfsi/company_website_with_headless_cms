@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Footer = ({ siteSetting = {} }) => {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-12">
-      <div className="container mx-auto px-6 lg:px-8 text-center">
-        <p>{siteSetting.footer || ""}</p>
+    <footer className='bg-gray-900 py-12 text-gray-300'>
+      <div className='container mx-auto px-6 text-center lg:px-8'>
+        <p>{siteSetting.footer || ''}</p>
       </div>
     </footer>
   );
