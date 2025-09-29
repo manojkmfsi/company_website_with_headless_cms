@@ -1,21 +1,22 @@
 import React from 'react';
 import Members from '@/components/member/members';
-import { cache } from 'react';
-import { fetchAPI } from '../../lib/api';
+import { fetchMembers } from '../actions/fetchMembers';
+// import { cache } from 'react';
+// import { fetchAPI } from '../../lib/api';
 
-export const fetchData = cache(async () => {
-  try {
-    const responseData = await fetchAPI(`/api/team-members?populate[0]=photo`, {
-      next: { revalidate: 60 },
-    });
-    return responseData.data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-});
+// export const fetchData = cache(async () => {
+//   try {
+//     const responseData = await fetchAPI(`/api/team-members?populate[0]=photo`, {
+//       next: { revalidate: 60 },
+//     });
+//     return responseData.data;
+//   } catch (error) {
+//     console.error(error);
+//     throw error;
+//   }
+// });
 export async function generateMetadata() {
-  const teamMembers = await fetchData();
+  const teamMembers = await fetchMembers();
   const members = teamMembers?.map((member) => member.name);
   return {
     title: 'Team Members',
@@ -37,8 +38,7 @@ export async function generateMetadata() {
 }
 
 const TeamPage = async () => {
-  const members = await fetchData();
-
+  const members = await fetchMembers();
   return (
     <div className='px-4 sm:px-6 lg:px-8'>
       <div className='mx-auto max-w-7xl text-center'>

@@ -1,25 +1,24 @@
 import React from 'react';
 import '../styles/global.css';
 import Header from '../components/common/Header.js';
-import { fetchAPI } from '../lib/api';
 import Footer from '@/components/common/Footer';
 import PropTypes from 'prop-types';
-import { cache } from 'react';
+import { fetchSetting } from './actions/fetchSetting';
 
-export const fetchData = cache(async () => {
-  try {
-    const responseData = await fetchAPI('/api/site-setting?populate=*', {
-      next: { revalidate: 60 },
-    });
-    return responseData?.data;
-  } catch (error) {
-    console.error(error);
-    return { error: error };
-  }
-});
+// export const fetchData = cache(async () => {
+//   try {
+//     const responseData = await fetchAPI('/api/site-setting?populate=*', {
+//       next: { revalidate: 60 },
+//     });
+//     return responseData?.data;
+//   } catch (error) {
+//     console.error(error);
+//     return { error: error };
+//   }
+// });
 
 export async function generateMetadata() {
-  const siteSetting = await fetchData();
+  const siteSetting = await fetchSetting();
   return {
     metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL),
     title: {
@@ -75,7 +74,7 @@ export async function generateMetadata() {
 }
 
 const RootLayout = async ({ children }) => {
-  const siteSetting = await fetchData();
+  const siteSetting = await fetchSetting();
   return (
     <html lang='en'>
       <body>

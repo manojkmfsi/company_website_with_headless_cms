@@ -1,26 +1,10 @@
 import React from 'react';
-import { fetchAPI } from '../../lib/api';
 import Image from 'next/image';
-// export const dynamic = 'force-dynamic';
 
-import { cache } from 'react';
-
-export const fetchData = cache(async () => {
-  try {
-    const responseData = await fetchAPI(
-      '/api/services?populate=*&sort=price:asc',
-      {
-        next: { revalidate: 60 },
-      }
-    );
-    return responseData.data;
-  } catch (error) {
-    console.error(error);
-  }
-});
+import { fetchServices } from '../actions/fetchServices';
 
 export async function generateMetadata() {
-  const services = await fetchData();
+  const services = await fetchServices();
   const serviceList = services?.map((service) => service.title);
 
   return {
@@ -43,7 +27,7 @@ export async function generateMetadata() {
 }
 
 export default async function ServicePage() {
-  const services = await fetchData();
+  const services = await fetchServices();
 
   return (
     <section className='bg-white py-16 lg:py-24'>

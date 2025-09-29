@@ -39,7 +39,7 @@ const renderAsync = async (Comp) => {
   return render(ui);
 };
 
-describe('MemberPage', () => {
+describe('ServicePage', () => {
   it('renders Services', async () => {
     fetchAPI.mockResolvedValueOnce({
       data: services,
