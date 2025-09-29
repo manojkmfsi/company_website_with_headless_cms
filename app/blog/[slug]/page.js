@@ -1,28 +1,14 @@
 import React from 'react';
 import Post from '@/components/blog/post';
-import { fetchAPI } from '../../../lib/api';
+import { fetchPost } from '../../actions/fetchPost';
 import { notFound } from 'next/navigation';
-import { cache } from 'react';
-
-export const fetchData = cache(async (slug) => {
-  try {
-    const responseData = await fetchAPI(
-      `/api/articles?populate=*&filters[slug][$eq]=${slug}`,
-      { next: { revalidate: 60 } }
-    );
-    if (responseData.data.length === 0) {
-      return null;
-    }
-    return responseData.data[0];
-  } catch (error) {
-    console.error(error);
-  }
-});
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
 
-  const post = await fetchData(slug);
+  const post = await fetchPost({
+    slug: slug,
+  });
   return {
     title: post.title,
     description: post.content,
@@ -47,7 +33,9 @@ export async function generateMetadata({ params }) {
 
 export default async function blog({ params }) {
   const { slug } = await params;
-  const post = await fetchData(slug);
+  const post = await fetchPost({
+    slug: slug,
+  });
   if (!post) {
     notFound();
   }

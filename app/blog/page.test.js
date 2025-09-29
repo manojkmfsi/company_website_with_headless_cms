@@ -2,9 +2,9 @@ import '@testing-library/jest-dom';
 import { render, act, screen } from '@testing-library/react';
 import BlogPage from './page';
 
-// Mock the server action
-jest.mock('../actions/fetchPosts', () => ({
-  fetchPosts: jest.fn(),
+// mock fetchAPI
+jest.mock('../../lib/api', () => ({
+  fetchAPI: jest.fn(),
 }));
 
 jest.mock('../../components/blog/post-list');

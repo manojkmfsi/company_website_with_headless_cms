@@ -1,25 +1,15 @@
 import React from 'react';
 import Member from '@/components/member/member';
 import PropTypes from 'prop-types';
-import { fetchAPI } from '../../../lib/api';
-import { notFound } from 'next/navigation';
-import { cache } from 'react';
 
-export const fetchData = cache(async (id) => {
-  try {
-    const responseData = await fetchAPI(
-      `/api/team-members/${id}?populate[0]=photo&populate[1]=articles.image&populate[2]=articles.author`,
-      { next: { revalidate: 60 } }
-    );
-    return responseData.data;
-  } catch (error) {
-    console.error(error);
-  }
-});
+import { fetchMember } from '@/app/actions/fetchMember';
+
 export async function generateMetadata({ params }) {
   const { id } = await params;
+  const member = await fetchMember({
+    id: id,
+  });
 
-  const member = await fetchData(id);
   return {
     title: member.name + ' - ' + member.designation,
     description: member.bio,
@@ -44,10 +34,10 @@ export async function generateMetadata({ params }) {
 
 export default async function MemberPage({ params }) {
   const { id } = await params;
-  const member = await fetchData(id);
-  if (!member) {
-    notFound();
-  }
+  const member = await fetchMember({
+    id: id,
+  });
+
   return (
     <section className='bg-white py-16 lg:py-24'>
       <div className='container mx-auto px-6 lg:px-8'>
