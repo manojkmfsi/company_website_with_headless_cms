@@ -32,6 +32,28 @@ const eslintConfig = [
     ],
   },
   {
+    rules: {
+      'no-undef': 'error',
+      'react/react-in-jsx-scope': 'off',
+      'tailwindcss/no-custom-classname': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error', // or "error"
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
+      'unicorn/prevent-abbreviations': 'off',
+    },
+  },
+  {
+    files: ['**/*.{jsx,tsx,js,ts}'],
+    rules: {
+      'no-console': 'warn',
+    },
+  },
+  {
     plugins: {
       jest,
     },
