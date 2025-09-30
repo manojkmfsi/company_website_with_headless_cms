@@ -2,18 +2,24 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import PropTypes from 'prop-types';
+import LayoutContext from '@/app/context/layoutContext';
 
 const Navigation = ({ siteSetting = {} }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const isActive = (path) => path === pathname;
+  const { setData } = useContext(LayoutContext);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  useEffect(() => {
+    setData(siteSetting);
+  });
 
   // Fix logo image URL logic
   const logoUrl =
