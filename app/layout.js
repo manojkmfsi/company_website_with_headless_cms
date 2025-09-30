@@ -4,18 +4,7 @@ import Header from '../components/common/Header.js';
 import Footer from '@/components/common/Footer';
 import PropTypes from 'prop-types';
 import { fetchSetting } from './actions/fetchSetting';
-
-// export const fetchData = cache(async () => {
-//   try {
-//     const responseData = await fetchAPI('/api/site-setting?populate=*', {
-//       next: { revalidate: 60 },
-//     });
-//     return responseData?.data;
-//   } catch (error) {
-//     console.error(error);
-//     return { error: error };
-//   }
-// });
+import LayoutProvider from './context/LayoutProvider';
 
 export async function generateMetadata() {
   const siteSetting = await fetchSetting();
@@ -78,11 +67,13 @@ const RootLayout = async ({ children }) => {
   return (
     <html lang='en'>
       <body>
-        <main className='flex h-screen flex-col justify-between'>
-          <Header siteSetting={siteSetting} />
-          {children}
-          <Footer siteSetting={siteSetting}></Footer>
-        </main>
+        <LayoutProvider>
+          <main className='flex h-screen flex-col justify-between'>
+            <Header siteSetting={siteSetting} />
+            {children}
+            <Footer siteSetting={siteSetting}></Footer>
+          </main>
+        </LayoutProvider>
       </body>
     </html>
   );
