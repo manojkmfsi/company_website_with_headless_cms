@@ -13,7 +13,7 @@ export default function Home() {
         <div className='container mx-auto px-6 lg:px-8'>
           <div className='flex flex-col items-center text-center'>
             <h1 className='mb-4 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl'>
-              {data.company_name} is your Partner in Scalable Software Solutions
+              {data?.company_name} is your Partner in Scalable Software Solutions
             </h1>
             <p className='mb-8 max-w-2xl text-lg text-gray-600 md:text-xl'>
               We specialize in turning complex ideas into robust,
