@@ -1,6 +1,6 @@
 import React from 'react';
-import PostList from '@/components/blog/post-list';
 import { fetchPosts } from '../actions/fetchPosts';
+import dynamic from 'next/dynamic';
 
 export async function generateMetadata() {
   return {
@@ -24,9 +24,14 @@ export async function generateMetadata() {
 export default async function BlogPage() {
   const initialData = await fetchPosts({
     page: 1,
-    pageSize: process.env.NEXT_PUBLIC_PAGE_LIMIT || 10,
+    pageSize: process.env.NEXT_PUBLIC_PAGE_LIMIT || 3,
     query: '',
   });
+
+  const DynamicPosts = dynamic(() => import('@/components/blog/post-list'), {
+    loading: () => <loader />, // Optional loading fallback
+  });
+
   return (
     <section className='bg-white py-16 lg:py-24'>
       <div className='container mx-auto px-6 lg:px-8'>
@@ -34,7 +39,7 @@ export default async function BlogPage() {
           <h1 className='mb-4 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl'>
             Blogs
           </h1>
-          <PostList initialData={initialData}></PostList>
+          <DynamicPosts initialData={initialData} />
         </div>
       </div>
     </section>

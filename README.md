@@ -36,6 +36,72 @@ ServeYou is a modern, responsive website built with Next.js, featuring a headles
 
 **Blog Posts:** Comprehensive content for the blog, with fields for the title, URL-friendly slug, author, date, body content, and a featured image.
 
+## API Endpoints:
+
+**Get Team Member -** `GET /api/team-members/${id}`
+
+**Get All Team Members -** `GET /api/team-members/${id}`
+
+**Get All Posts -** `GET /api/articles`
+
+**Get Post -** `GET /api/articles?populate=*&filters[slug][$eq]=${slug}`
+
+**Get All services -** `GET /api/services`
+
+**Get Site Settings -** `GET /api/site-setting`
+
+## Explanation of Directories:
+
+- **`.` (Root Directory):** Contains configuration files, `node_modules`, and the top-level application folders.
+- **`app/`:** Core Next.js App Router structure with layouts, routes, and server actions.
+  - **`layout.js`:** Root layout file including `<html>`, `<body>`, and global components (Header, Footer, Navigation).
+  - **`page.js`:** Home page component (`/`).
+  - **`about/`:** Files for the `/about` route.
+    - **`page.js`:** About page component.
+  - **`blog/`:** Files for the `/blog` route and nested dynamic routes.
+    - **`page.js`:** Blog listing page.
+    - **`[slug]/`:** Dynamic route folder for individual blog posts.
+      - **`page.js`:** Individual blog post page.
+  - **`member/`:** Files for the `/member` route and nested dynamic routes.
+    - **`page.js`:** Team members listing page.
+    - **`[id]/`:** Dynamic route folder for individual team members.
+      - **`page.js`:** Individual team member profile page.
+  - **`services/`:** Files for the `/services` route.
+    - **`page.js`:** Services listing page.
+- **`actions/`:** Server Actions for data fetching and mutation.
+  - **`fetchMember.js`:** Fetch a single member.
+  - **`fetchMembers.js`:** Fetch all members.
+  - **`fetchPost.js`:** Fetch a single blog post.
+  - **`fetchPosts.js`:** Fetch all blog posts.
+  - **`fetchServices.js`:** Fetch all services.
+  - **`fetchSetting.js`:** Fetch site settings.
+- **`context/`:** Global state management using React Context.
+  - **`layoutContext.js`:** Defines the Layout context.
+  - **`LayoutProvider.js`:** Provides layout context state across the app.
+- **`components/`:** Reusable UI components.
+  - **`blog/`:** Blog-specific components.
+    - **`post-list.js`:** Renders list of posts (with Search & Loader).
+    - **`post-list.test.js`:** Tests for post-list.
+    - **`post.js`:** Renders a single blog post.
+    - **`post.test.js`:** Tests for post.
+    - **`posts.js`:** Renders multiple blog posts.
+  - **`common/`:** Shared, general-purpose UI components.
+    - **`Footer.js`:** Global site footer.
+    - **`Header.js`:** Global site header.
+    - **`Loader.js`:** Loader image.
+    - **`Navigation.js`:** Main navigation bar.
+    - **`search.js`:** Search bar component.
+  - **`member/`:** Team member-specific components.
+    - **`member.js`:** Single team member profile.
+    - **`member.test.js`:** Tests for member component.
+    - **`members.js`:** List of team members.
+    - **`members.test.js`:** Tests for members component.
+- **`lib/`:** Utilities and configuration.
+  - **`api.js`:** Centralized API client (e.g., Strapi requests).
+  - **`globalConst.js`:** Global constants (API URLs, etc.).
+  - **`helpers.js`:** General utility functions.
+- **`public/`:** Contains static assets served directly by the web server.
+
 ## Installation and Usage
 
 To get statred first setup Strapi headless CMS on your local machine, follow these steps:
