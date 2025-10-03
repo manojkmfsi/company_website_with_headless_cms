@@ -3,6 +3,7 @@ import { render, act, screen } from '@testing-library/react';
 import ServicePage from './page';
 import { fetchAPI } from '../../lib/api';
 import React from 'react';
+import { ReactElement } from 'react';
 
 // mock fetchAPI
 jest.mock('../../lib/api', () => ({
@@ -11,7 +12,7 @@ jest.mock('../../lib/api', () => ({
 
 jest.mock('next/image', () => ({
   __esModule: true,
-  default: (props) => {
+  default: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
     return <img {...props} />;
   },
 }));
@@ -32,16 +33,22 @@ const services = [
     image: { url: '/ai.jpg' },
   },
 ];
-
+interface ServicePageParams {
+  params: {
+    id: string;
+  };
+}
 // helper wrapper: allows rendering async server component
-const renderAsync = async (Comp) => {
+const renderAsync = async (
+  Comp: (params: ServicePageParams) => Promise<ReactElement> | ReactElement
+) => {
   const ui = await Comp({ params: { id: '123' } });
   return render(ui);
 };
 
 describe('ServicePage', () => {
   it('renders Services', async () => {
-    fetchAPI.mockResolvedValueOnce({
+    (fetchAPI as jest.Mock).mockResolvedValueOnce({
       data: services,
     });
     await act(async () => {
@@ -50,7 +57,7 @@ describe('ServicePage', () => {
   });
 
   it('renders Service Page Heading', async () => {
-    fetchAPI.mockResolvedValueOnce({
+    (fetchAPI as jest.Mock).mockResolvedValueOnce({
       data: services,
     });
 

@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import React from 'react';
-import LayoutContext from '@/app/context/layoutContext';
+import { LayoutContext } from '@/app/context/layoutContext';
 import { useContext } from 'react';
 
 export default function Home() {

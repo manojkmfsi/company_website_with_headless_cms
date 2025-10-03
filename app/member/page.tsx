@@ -1,23 +1,16 @@
 import React from 'react';
 import Members from '@/components/member/members';
 import { fetchMembers } from '../actions/fetchMembers';
-// import { cache } from 'react';
-// import { fetchAPI } from '../../lib/api';
 
-// export const fetchData = cache(async () => {
-//   try {
-//     const responseData = await fetchAPI(`/api/team-members?populate[0]=photo`, {
-//       next: { revalidate: 60 },
-//     });
-//     return responseData.data;
-//   } catch (error) {
-//     console.error(error);
-//     throw error;
-//   }
-// });
+interface TeamMember {
+  id: number;
+  name: string;
+  role: string;
+}
+
 export async function generateMetadata() {
-  const teamMembers = await fetchMembers();
-  const members = teamMembers?.map((member) => member.name);
+  const teamMembers: TeamMember[] | undefined = await fetchMembers();
+  const members: string[] = teamMembers?.map((member) => member.name) ?? [];
   return {
     title: 'Team Members',
     description: 'Our Team Members',

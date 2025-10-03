@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import { render, act, screen } from '@testing-library/react';
 import MemberPage from './page';
 import { fetchAPI } from '../../../lib/api';
+import { ReactElement } from 'react';
 
 // mock fetchAPI
 jest.mock('../../../lib/api', () => ({
@@ -9,15 +10,22 @@ jest.mock('../../../lib/api', () => ({
 }));
 jest.mock('../../../components/member/member');
 
+interface MemberPageProps {
+  params: {
+    id: string;
+  };
+}
 // helper wrapper: allows rendering async server component
-const renderAsync = async (Comp) => {
+const renderAsync = async (
+  Comp: (props: MemberPageProps) => Promise<ReactElement> | ReactElement
+) => {
   const ui = await Comp({ params: { id: '123' } });
   return render(ui);
 };
 
 describe('MemberPage', () => {
   it('renders Member Page', async () => {
-    fetchAPI.mockResolvedValueOnce({
+    (fetchAPI as jest.Mock).mockResolvedValueOnce({
       data: [
         {
           id: 1,
@@ -48,7 +56,7 @@ describe('MemberPage', () => {
   });
 
   it('renders Member Page Heading', async () => {
-    fetchAPI.mockResolvedValueOnce({
+    (fetchAPI as jest.Mock).mockResolvedValueOnce({
       data: [
         {
           id: 1,

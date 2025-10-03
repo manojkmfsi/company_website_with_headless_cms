@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useState, useContext, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import PropTypes from 'prop-types';
-import LayoutContext from '@/app/context/layoutContext';
+import { LayoutContext } from '@/app/context/layoutContext';
 
 const Navigation = ({ siteSetting = {} }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

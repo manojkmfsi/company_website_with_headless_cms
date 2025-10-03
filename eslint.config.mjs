@@ -51,6 +51,8 @@ const eslintConfig = [
     files: ['**/*.{jsx,tsx,js,ts}'],
     rules: {
       'no-console': 'warn',
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
+      '@typescript-eslint/explicit-function-return-type': 'off',
     },
   },
   {

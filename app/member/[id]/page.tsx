@@ -1,10 +1,11 @@
 import React from 'react';
 import Member from '@/components/member/member';
-import PropTypes from 'prop-types';
-
 import { fetchMember } from '@/app/actions/fetchMember';
 
-export async function generateMetadata({ params }) {
+interface GenerateMetadataProps {
+  params: Record<string, string | string[]>;
+}
+export async function generateMetadata({ params }: GenerateMetadataProps) {
   const { id } = await params;
   const member = await fetchMember({
     id: id,
@@ -32,7 +33,13 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function MemberPage({ params }) {
+interface MemberPageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default async function MemberPage({ params }: MemberPageProps) {
   const { id } = await params;
   const member = await fetchMember({
     id: id,
@@ -51,7 +58,3 @@ export default async function MemberPage({ params }) {
     </section>
   );
 }
-
-MemberPage.propTypes = {
-  params: PropTypes.object.isRequired,
-};

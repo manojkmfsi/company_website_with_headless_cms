@@ -1,11 +1,20 @@
 import React from 'react';
 import Image from 'next/image';
-
+import { ReactElement } from 'react';
 import { fetchServices } from '../actions/fetchServices';
 
+interface Service {
+  id: number;
+  title: string;
+  description?: string;
+  price?: number;
+  image?: {
+    url?: string;
+  };
+}
 export async function generateMetadata() {
-  const services = await fetchServices();
-  const serviceList = services?.map((service) => service.title);
+  const services: Service[] = await fetchServices();
+  const serviceList: string[] = services?.map((service) => service.title) ?? [];
 
   return {
     title: 'Services',
@@ -26,8 +35,8 @@ export async function generateMetadata() {
   };
 }
 
-export default async function ServicePage() {
-  const services = await fetchServices();
+export default async function ServicePage(): Promise<ReactElement> {
+  const services: Service[] = await fetchServices();
 
   return (
     <section className='bg-white py-16 lg:py-24'>
