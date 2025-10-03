@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import { render, act, screen } from '@testing-library/react';
 import TeamPage from './page';
 import { fetchAPI } from '../../lib/api';
+import { ReactElement } from 'react';
 
 const members = [
   {
@@ -31,14 +32,16 @@ jest.mock('../../lib/api', () => ({
 }));
 
 // helper wrapper: allows rendering async server component
-const renderAsync = async (Comp) => {
+const renderAsync = async (
+  Comp: () => Promise<ReactElement> | ReactElement
+) => {
   const ui = await Comp();
   return render(ui);
 };
 
 describe('MembersPage', () => {
   it('renders Members Page Heading', async () => {
-    fetchAPI.mockResolvedValueOnce({
+    (fetchAPI as jest.Mock).mockResolvedValueOnce({
       data: members,
     });
 

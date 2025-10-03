@@ -3,7 +3,11 @@ import Post from '@/components/blog/post';
 import { fetchPost } from '../../actions/fetchPost';
 import { notFound } from 'next/navigation';
 
-export async function generateMetadata({ params }) {
+interface GenerateMetadataProps {
+  params: Record<string, string | string[]>;
+}
+
+export async function generateMetadata({ params }: GenerateMetadataProps) {
   const { slug } = await params;
 
   const post = await fetchPost({
@@ -30,8 +34,12 @@ export async function generateMetadata({ params }) {
     },
   };
 }
-
-export default async function blog({ params }) {
+interface BlogPageProps {
+  params: {
+    slug: string;
+  };
+}
+export default async function blog({ params }: BlogPageProps) {
   const { slug } = await params;
   const post = await fetchPost({
     slug: slug,

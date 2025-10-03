@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, act, screen } from '@testing-library/react';
 import BlogPage from './page';
+import { ReactElement } from 'react';
 
 // mock fetchAPI
 jest.mock('../../lib/api', () => ({
@@ -10,7 +11,9 @@ jest.mock('../../lib/api', () => ({
 jest.mock('../../components/blog/post-list');
 
 // helper wrapper: allows rendering async server component
-const renderAsync = async (Comp) => {
+const renderAsync = async (
+  Comp: () => Promise<ReactElement> | ReactElement
+) => {
   const ui = await Comp();
   return render(ui);
 };

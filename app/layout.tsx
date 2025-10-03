@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import '../styles/global.css';
 import Header from '../components/common/Header.js';
 import Footer from '@/components/common/Footer';
-import PropTypes from 'prop-types';
 import { fetchSetting } from './actions/fetchSetting';
 import LayoutProvider from './context/LayoutProvider';
 
 export async function generateMetadata() {
   const siteSetting = await fetchSetting();
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL ?? ''),
     title: {
       default:
         siteSetting.company_name +
@@ -61,8 +60,10 @@ export async function generateMetadata() {
     },
   };
 }
-
-const RootLayout = async ({ children }) => {
+interface RootLayoutProps {
+  children: ReactNode;
+}
+const RootLayout = async ({ children }: RootLayoutProps) => {
   const siteSetting = await fetchSetting();
   return (
     <html lang='en'>
@@ -78,7 +79,5 @@ const RootLayout = async ({ children }) => {
     </html>
   );
 };
-RootLayout.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+
 export default RootLayout;
