@@ -1,6 +1,7 @@
 import React from 'react';
 import { fetchPosts } from '../actions/fetchPosts';
 import dynamic from 'next/dynamic';
+import Loader from '@/components/common/Loader';
 
 export async function generateMetadata() {
   return {
@@ -29,7 +30,7 @@ export default async function BlogPage() {
   });
 
   const DynamicPosts = dynamic(() => import('@/components/blog/post-list'), {
-    loading: () => <loader />, // Optional loading fallback
+    loading: () => <Loader />, // Optional loading fallback
   });
 
   return (
