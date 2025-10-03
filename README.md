@@ -40,7 +40,7 @@ ServeYou is a modern, responsive website built with Next.js, featuring a headles
 
 **Get Team Member -** `GET /api/team-members/${id}`
 
-**Get All Team Members -** `GET /api/team-members/${id}`
+**Get All Team Members -** `GET /api/team-members`
 
 **Get All Posts -** `GET /api/articles`
 
